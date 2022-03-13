@@ -58,7 +58,6 @@ var passwordGenerator = function(){
       passwordArray[i] = value;
     } else {
       characterLoop();
-      return;
     }
   }
   //where variable i is index 0 in the array, for the cases at which the index number is less than the password length, execute the loop, and increase the value of i by 1 each time
@@ -77,6 +76,7 @@ var passwordGenerator = function(){
     var passwordText = document.querySelector("#password");
     passwordText.value = password;
   }
+
   // Add event listener to generate button ORIGINAL
   generateBtn.addEventListener("click", writePassword);
 
