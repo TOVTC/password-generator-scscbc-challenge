@@ -5,6 +5,8 @@ uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
 numericalValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] //maybe can remove to just use randomNumber
 specialCharacters = ["@", "%", "+", "/", "'", "!", "#", "$", "^", "?", ":", ",", "~", "-", "_", "."]
 
+//create an array to hold the password
+var passwordArray = []
 
 //add code that links event to initiation of questions
 window.alert("Welcome to password generator! Answer the following questions to tailor your password.");
@@ -26,27 +28,28 @@ var passwordGenerator = function(){
     window.alert("ERROR - You must select at least one character type");
     passwordGenerator();
   }
-  //create an array to hold the password
-  var password = []
   //loop through generating a value for each character in the password
   var characterLoop = function() {
+    //randomly select the type of character the loop should return
     characterType = randomNumber(1, 4);
+    //if the character type has been selected and the user has confirmed they want that type of character, generate a random number and select from the corresponding array
+    //DON'T FORGET TO FIX THIS SECTION **********************
     if (characterType === 1 && lowercaseConfirm) {
-      index = randomNumber(1, 26);
+      index = randomNumber(1, uppercaseLetters.length);
       value = lowercaseLetters[index];
-      password[i] = value;
+      passwordArray[i] = value;
     } else if (characterType === 2 && uppercaseConfirm) {
-      index = randomNumber(1, 26);
+      index = randomNumber(1, lowercaseLetters.length);
       value = uppercaseLetters[index];
-      password[i] = value;
+      passwordArray[i] = value;
     } else if (characterType === 3 && numericalConfirm) {
       index = randomNumber(1, 10);
       value = uppercaseLetters[index];
-      password[i] = value;
+      passwordArray[i] = value;
     } else if (characterType === 4 && specialConfirm) {
       index = randomNumber(1, specialCharacters.length);
       value = uppercaseLetters[index];
-      password[i] = value;
+      passwordArray[i] = value;
     } else {
       characterLoop();
     };
@@ -54,29 +57,28 @@ var passwordGenerator = function(){
       //loop me!
     for (var i = 0; i < passwordLength; i++) {
       characterLoop();
-      console.log(password);
+      console.log(passwordArray);
     }
+  
+  //bonus - if they hit cancel for the number of characters, confirm if they want to exit the loop
+
+  // Get references to the #generate element ORIGINAL
+  var generateBtn = document.querySelector("#generate");
+
+  // Write password to the #password input
+  function writePassword() {
+      //change password array into a string
+      var passwordText = passwordArray.join("");
+      password = passwordText.value;
+      var passwordText = document.querySelector("#password");
+      console.log(password);
   }
 
-//generate a randomizer to determine whether the digit will be lowercase, uppercase, numeric, or special characters
-//generate for loop for the length of the selected password to pick a random value
-//then use and && operator conditional to skip through the options
-//use randomNumber and include min max values per character type to select the character to be added from the existing arrays
+  // Add event listener to generate button ORIGINAL
+  generateBtn.addEventListener("click", writePassword);
+}
 
-  //loop through generating a value for each character in the password
-//    for (var i = 0; i < passwordLength; i++) {
-//      number = randomNumber(1, 4);
-//      password[i] = number;
-//    }
-//    console.log(password)
-//}
-
-//bonus - if they hit cancel for the number of characters, confirm if they want to exit the loop
-
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
+// Write password to the #password input ORIGINAL
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -84,9 +86,6 @@ function writePassword() {
   passwordText.value = password;
 
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
 //generate a random value between two numbers
 var randomNumber = function(min, max){
