@@ -2,29 +2,19 @@
 //password character arrays
 lowercaseLetters = ["a", "b", "c", "c", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "v", "W", "X", "Y", "Z"]
-numericalValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] //maybe can remove to just use randomNumber
+numericalValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 specialCharacters = ["@", "%", "+", "/", "'", "!", "#", "$", "^", "?", ":", ",", "~", "-", "_", "."]
 
 //create an array to hold the password
 var passwordArray = []
 
-//add code that links event to initiation of questions
-window.alert("Welcome to password generator! Answer the following questions to tailor your password.");
+debugger;
 //function to generate password
 var passwordGenerator = function(){
   //generate prompt to enter a value between 8 and 128
-  var passwordLength = window.prompt("How many characters should your password have? Enter a value between 8 and 128. Type 'EXIT' to cancel.");
-    passwordLength = passwordLength.toLowerCase();
-    //if the player wants to cancel password generation
-    if (passwordLength === "exit") {
-      var confirmCancel = window.confirm("Are you sure you want to Exit? Click 'OK' to quit.");
-      if (confirmCancel) {
-        return;
-      }
-      if (!confirmCancel) {
-        passwordGenerator();
-      }
-    } else if (passwordLength < 8 || passwordLength > 128) { //if the user entered an invalid length, self-invoke function
+  var passwordLength = window.prompt("How many characters should your password have? Enter a value between 8 and 128.");
+    //if the user entered an invalid length, self-invoke function
+    if (passwordLength < 8 || passwordLength > 128) {
       window.alert("ERROR - You must enter a value between 8 and 128.");
       passwordGenerator()
     }
@@ -69,7 +59,6 @@ var passwordGenerator = function(){
       console.log(passwordArray);
     }
   }
-
   // Get references to the #generate element ORIGINAL
   var generateBtn = document.querySelector("#generate");
 
@@ -83,11 +72,8 @@ var passwordGenerator = function(){
   // Add event listener to generate button ORIGINAL
   generateBtn.addEventListener("click", writePassword);
 
-//generate a random value between two numbers
-var randomNumber = function(min, max){
-  var number = Math.floor(Math.random() * (max - min + 1) + min);
-  return number;
+  //generate a random value between two numbers
+  var randomNumber = function(min, max){
+    var number = Math.floor(Math.random() * (max - min + 1) + min);
+    return number;
 }
-
-// //start generating!
-writePassword();
