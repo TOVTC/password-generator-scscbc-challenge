@@ -13,9 +13,15 @@ debugger;
 var passwordGenerator = function(){
   //generate prompt to enter a value between 8 and 128
   var passwordLength = window.prompt("How many characters should your password have? Enter a value between 8 and 128.");
-  //if the user entered an invalid length, self-invoke function
+  if (isNaN(passwordLength)) {
+    window.alert("ERROR - You must enter a numerical value");
+    passwordGenerator();
+    return;
+  }
+  //if the user entered an invalid length, exit function
   if (passwordLength < 2 || passwordLength > 128) {
     window.alert("ERROR - You must enter a value between 8 and 128.");
+    passwordGenerator();
     return;
   }
   //confirm whether user wants different types of characters
@@ -23,9 +29,10 @@ var passwordGenerator = function(){
   var uppercaseConfirm = window.confirm("Should your password include uppercase letters?");
   var numericalConfirm = window.confirm("Should your password include numerical digits?");
   var specialConfirm = window.confirm("Should your password include special characters?");
-  //if the user answered no to all character types, a password cannot be generated, so self-invoke function
+  //if the user answered no to all character types, a password cannot be generated, exit function
   if (!lowercaseConfirm && !uppercaseConfirm && !numericalConfirm && !specialConfirm) {
     window.alert("ERROR - You must select at least one character type");
+    passwordGenerator();
     return;
   }
   //loop through generating a value for each character in the password
