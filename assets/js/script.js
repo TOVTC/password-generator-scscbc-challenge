@@ -26,53 +26,40 @@ var passwordGenerator = function(){
     window.alert("ERROR - You must select at least one character type");
     passwordGenerator();
   }
-  debugger;
   //create an array to hold the password
   var password = []
   //loop through generating a value for each character in the password
   var characterLoop = function() {
     characterType = randomNumber(1, 4);
-    if (characterType = 1 && lowercaseConfirm) {
+    if (characterType === 1 && lowercaseConfirm) {
       index = randomNumber(1, 26);
       value = lowercaseLetters[index];
       password[i] = value;
-    } else {
-      characterLoop();
-    }
-    if (characterType = 2 && uppercaseConfirm) {
+    } else if (characterType === 2 && uppercaseConfirm) {
       index = randomNumber(1, 26);
       value = uppercaseLetters[index];
       password[i] = value;
-    } else {
-      characterLoop();
-    }
-    if (characterType = 3 && numericalConfirm) {
+    } else if (characterType === 3 && numericalConfirm) {
       index = randomNumber(1, 10);
       value = uppercaseLetters[index];
       password[i] = value;
-    } else {
-      characterLoop();
-    }
-    if (characterType = 4 && specialConfirm) {
+    } else if (characterType === 4 && specialConfirm) {
       index = randomNumber(1, specialCharacters.length);
       value = uppercaseLetters[index];
       password[i] = value;
     } else {
       characterLoop();
-    }
+    };
   }
       //loop me!
     for (var i = 0; i < passwordLength; i++) {
       characterLoop();
+      console.log(password);
     }
   }
-  console.log(password)
 
-//create some sort of container for my values - an array?
-//create an array that holds all possible values for each category of character
 //generate a randomizer to determine whether the digit will be lowercase, uppercase, numeric, or special characters
 //generate for loop for the length of the selected password to pick a random value
-//use randomNumber = function (min, max) and then use if value is ><= to separate into four categories, each representing one character type
 //then use and && operator conditional to skip through the options
 //use randomNumber and include min max values per character type to select the character to be added from the existing arrays
 
