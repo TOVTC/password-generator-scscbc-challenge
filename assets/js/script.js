@@ -18,7 +18,7 @@ var passwordGenerator = function(){
     return;
   }
   //if the user entered an invalid length, exit function
-  if (passwordLength < 2 || passwordLength > 128) {
+  if (passwordLength < 8 || passwordLength > 128) {
     window.alert("ERROR - You must enter a value between 8 and 128.");
     passwordGenerator();
     return;
