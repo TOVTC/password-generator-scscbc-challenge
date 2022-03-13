@@ -8,9 +8,9 @@ specialCharacters = ["@", "%", "+", "/", "'", "!", "#", "$", "^", "?", ":", ",",
 //create an array to hold the password
 var passwordArray = []
 
-//add code that links event to initiation of questions
-window.alert("Welcome to password generator! Answer the following questions to tailor your password.");
 var passwordGenerator = function(){
+  //add code that links event to initiation of questions
+  window.alert("Welcome to password generator! Answer the following questions to tailor your password.");
   //generate prompt to enter a value between 8 and 128
   var passwordLength = window.prompt("How many characters should your password have? Enter a value between 8 and 128.")
   //if the user entered an invalid length, self-invoke function
@@ -59,6 +59,7 @@ var passwordGenerator = function(){
       characterLoop();
       console.log(passwordArray);
     }
+  }
   
   //bonus - if they hit cancel for the number of characters, confirm if they want to exit the loop
 
@@ -67,25 +68,13 @@ var passwordGenerator = function(){
 
   // Write password to the #password input
   function writePassword() {
-      //change password array into a string
-      var passwordText = passwordArray.join("");
-      password = passwordText.value;
-      var passwordText = document.querySelector("#password");
-      console.log(password);
+    passwordGenerator();
+    var password = passwordArray.join("");
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
   }
-
   // Add event listener to generate button ORIGINAL
   generateBtn.addEventListener("click", writePassword);
-}
-
-// Write password to the #password input ORIGINAL
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
 
 //generate a random value between two numbers
 var randomNumber = function(min, max){
@@ -93,5 +82,14 @@ var randomNumber = function(min, max){
   return number;
 }
 
-//start generating!
-passwordGenerator();
+// //start generating!
+// passwordGenerator();
+
+// function writePassword() {
+//   var password = generatePassword();
+//   var passwordText = document.querySelector("#password");
+
+//   passwordText.value = password;
+
+// }
+writePassword();
