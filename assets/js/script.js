@@ -8,7 +8,6 @@ specialCharacters = ["@", "%", "+", "/", "'", "!", "#", "$", "^", "?", ":", ",",
 //create an array to hold the password
 var passwordArray = [];
 
-debugger;
 //function to generate password
 var passwordGenerator = function(){
   //generate prompt to enter a value between 8 and 128
