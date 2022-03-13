@@ -1,1 +1,1 @@
-# password-generator-scscbc-challenge
+# Password Generator Starter Code
