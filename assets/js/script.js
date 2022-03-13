@@ -40,19 +40,19 @@ var passwordGenerator = function(){
     //randomly select the type of character the loop should return
     characterType = randomNumber(1, 4);
     //if the character type has been selected and the user has confirmed they want that type of character, generate a random number and select from the corresponding array
-    if (characterType === 1 && lowercaseConfirm) {
+    if (lowercaseConfirm && characterType === 1) {
       index = randomNumber(1, lowercaseLetters.length);
       value = lowercaseLetters[index];
       passwordArray[i] = value;
-    } else if (characterType === 2 && uppercaseConfirm) {
+    } else if (uppercaseConfirm && characterType === 2) {
       index = randomNumber(1, uppercaseLetters.length);
       value = uppercaseLetters[index];
       passwordArray[i] = value;
-    } else if (characterType === 3 && numericalConfirm) {
+    } else if (numericalConfirm && characterType === 3) {
       index = randomNumber(1, 10);
       value = numericalValues[index];
       passwordArray[i] = value;
-    } else if (characterType === 4 && specialConfirm) {
+    } else if (specialConfirm && characterType === 4) {
       index = randomNumber(1, specialCharacters.length);
       value = specialCharacters[index];
       passwordArray[i] = value;
@@ -70,6 +70,7 @@ var passwordGenerator = function(){
 
   // Write password to the #password input
   function writePassword() {
+    passwordArray.length = 0;
     passwordGenerator();
     var password = passwordArray.join("");
     var passwordText = document.querySelector("#password");
