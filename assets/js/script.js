@@ -8,21 +8,31 @@ specialCharacters = ["@", "%", "+", "/", "'", "!", "#", "$", "^", "?", ":", ",",
 //create an array to hold the password
 var passwordArray = []
 
+//add code that links event to initiation of questions
+window.alert("Welcome to password generator! Answer the following questions to tailor your password.");
+//function to generate password
 var passwordGenerator = function(){
-  //add code that links event to initiation of questions
-  window.alert("Welcome to password generator! Answer the following questions to tailor your password.");
   //generate prompt to enter a value between 8 and 128
-  var passwordLength = window.prompt("How many characters should your password have? Enter a value between 8 and 128.")
-  //if the user entered an invalid length, self-invoke function
-  if (passwordLength < 8 || passwordLength > 128) {
-    window.alert("ERROR - You must enter a value between 8 and 128.")
-    passwordGenerator()
-  }
+  var passwordLength = window.prompt("How many characters should your password have? Enter a value between 8 and 128. Type 'EXIT' to cancel.");
+    passwordLength = passwordLength.toLowerCase();
+    //if the player wants to cancel password generation
+    if (passwordLength === "exit") {
+      var confirmCancel = window.confirm("Are you sure you want to Exit? Click 'OK' to quit.");
+      if (confirmCancel) {
+        return;
+      }
+      if (!confirmCancel) {
+        passwordGenerator();
+      }
+    } else if (passwordLength < 8 || passwordLength > 128) { //if the user entered an invalid length, self-invoke function
+      window.alert("ERROR - You must enter a value between 8 and 128.");
+      passwordGenerator()
+    }
   //confirm whether user wants different types of characters
-  var lowercaseConfirm = window.confirm("Should your password include lowercase letters?")
-  var uppercaseConfirm = window.confirm("Should your password include uppercase letters?")
-  var numericalConfirm = window.confirm("Should your password include numerical digits?")
-  var specialConfirm = window.confirm("Should your password include special characters?")
+  var lowercaseConfirm = window.confirm("Should your password include lowercase letters?");
+  var uppercaseConfirm = window.confirm("Should your password include uppercase letters?");
+  var numericalConfirm = window.confirm("Should your password include numerical digits?");
+  var specialConfirm = window.confirm("Should your password include special characters?");
   //if the user answered no to all character types, a password cannot be generated, so self-invoke function
   if (!lowercaseConfirm && !uppercaseConfirm && !numericalConfirm && !specialConfirm) {
     window.alert("ERROR - You must select at least one character type");
@@ -59,8 +69,6 @@ var passwordGenerator = function(){
       console.log(passwordArray);
     }
   }
-  
-  //bonus - if they hit cancel for the number of characters, confirm if they want to exit the loop
 
   // Get references to the #generate element ORIGINAL
   var generateBtn = document.querySelector("#generate");
