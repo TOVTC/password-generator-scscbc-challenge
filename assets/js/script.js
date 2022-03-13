@@ -41,30 +41,31 @@ var passwordGenerator = function(){
     characterType = randomNumber(1, 4);
     //if the character type has been selected and the user has confirmed they want that type of character, generate a random number and select from the corresponding array
     if (lowercaseConfirm && characterType === 1) {
-      index = randomNumber(1, lowercaseLetters.length);
+      index = randomNumber(0, lowercaseLetters.length-1);
       value = lowercaseLetters[index];
       passwordArray[i] = value;
     } else if (uppercaseConfirm && characterType === 2) {
-      index = randomNumber(1, uppercaseLetters.length);
+      index = randomNumber(0, uppercaseLetters.length-1);
       value = uppercaseLetters[index];
       passwordArray[i] = value;
     } else if (numericalConfirm && characterType === 3) {
-      index = randomNumber(1, 10);
+      index = randomNumber(0, numericalValues.length-1);
       value = numericalValues[index];
       passwordArray[i] = value;
     } else if (specialConfirm && characterType === 4) {
-      index = randomNumber(1, specialCharacters.length);
+      index = randomNumber(0, specialCharacters.length-1);
       value = specialCharacters[index];
       passwordArray[i] = value;
     } else {
       characterLoop();
+      return;
     }
-  };
+  }
   //where variable i is index 0 in the array, for the cases at which the index number is less than the password length, execute the loop, and increase the value of i by 1 each time
   for (var i = 0; i < passwordLength; i++) {
     characterLoop();
   }
-};
+}
   // Get references to the #generate element ORIGINAL
   var generateBtn = document.querySelector("#generate");
 
